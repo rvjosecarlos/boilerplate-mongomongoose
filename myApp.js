@@ -1,5 +1,9 @@
-require('dotenv').config();
+//const { MONGO_URI } = require('dotenv').config().parsed;
+const mongoose = require('mongoose');
 
+const MONGO_URI = process.env['MONGO_URI'];
+
+const que = mongoose.connect( MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 let Person;
 
