@@ -6,7 +6,25 @@ console.log(MONGO_URI);
 
 mongoose.connect( MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-let Person;
+// Creacion del ESQUEMA (Descripcion de los 'documentos' que se almacenaran en la coleccion)
+let personSchema = new mongoose.Schema( {
+  name: {
+    type: String,
+    require: true,
+  },
+  age: {
+    type: Number,
+    require: true
+  },
+  email: {
+    type: String,
+    require: true,
+    unique: true
+  }
+});
+
+// Se crea un modelo para poder acceder a los metods de crear, consultar, eliminar, actualizar...
+let Person = new mongoose.model( 'Person', personSchema );
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
