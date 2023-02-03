@@ -34,14 +34,8 @@ const createAndSavePerson = (done) => {
     favoriteFoods: ['Pizza', 'Hamburguesas', 'Tacos']
   });
 
-  const solicitudAgregar = person.save( (error, datos)=>{
-    if(error){
-      return done( error );
-    }
-    done( null, datos);
-  });
-
-  solicitudAgregar
+  person
+    .save()
     .then( res => console.log(res))
     .catch( error => console.log(error) );
 
