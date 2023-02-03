@@ -16,11 +16,6 @@ let personSchema = new mongoose.Schema( {
     type: Number,
     require: true
   },
-  email: {
-    type: String,
-    require: true,
-    unique: true
-  },
   favoriteFoods: {
     type: [String],
     require: true
@@ -32,6 +27,7 @@ let Person = new mongoose.model( 'Person', personSchema );
 console.log(Person);
 
 const createAndSavePerson = (done) => {
+
   done(null /*, data*/);
 };
 
