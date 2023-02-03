@@ -20,11 +20,16 @@ let personSchema = new mongoose.Schema( {
     type: String,
     require: true,
     unique: true
+  },
+  favoriteFoods: {
+    type: [String],
+    require: true
   }
 });
 
 // Se crea un modelo para poder acceder a los metods de crear, consultar, eliminar, actualizar...
 let Person = new mongoose.model( 'Person', personSchema );
+console.log(Person);
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
