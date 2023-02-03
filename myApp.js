@@ -28,12 +28,15 @@ let Person = mongoose.model( 'Person', personSchema );
 console.log(Person);
 
 const createAndSavePerson = (done) => {
+
+  // Crea una instancia del modelo que basicamente es un objeto que accedera al metodo .save()
   const person = new Person({
     name: 'Carlos',
     age: 35,
     favoriteFoods: ['Pizza', 'Hamburguesas', 'Tacos']
   });
 
+  // El objeto instanciado es el documento que sera agregado a la coleccion con el metodo .save()
   person
     .save()
     .then( documento => console.log(documento) )
@@ -41,8 +44,35 @@ const createAndSavePerson = (done) => {
 
 };
 
+
+// Agrega muchos documentos de tipo persona a la coleccion
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  
+  const nicole = {
+    name: 'Nicole',
+    age: 22,
+    favoriteFoods: ['Pollo en chiltipin', 'Molotes', 'Hamburguesas']
+  };
+
+  const carlos = {
+    name: 'Carlos',
+    age: 35,
+    favoriteFoods: ['Cereal con leche', 'Sopa maruchan', 'Tacos']
+  };
+
+  // Se pueden ingresar varios datos de inicio a la coleccion con Modelo.Create( arrDeObjs, callback )
+  const promesaInsertar = Person.create( [ nicole, carlos ], (error, data)=>{
+    if( error ){
+      return done( error );
+    }else{
+      return done( null, data );
+    };
+  });
+
+  promesaInsertar
+    .then( resultado => console.log(resultado) )
+    .catch( error => console.log(error) );
+
 };
 
 const findPeopleByName = (personName, done) => {
