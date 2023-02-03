@@ -24,7 +24,7 @@ let personSchema = new mongoose.Schema( {
 });
 
 // Se crea un modelo para poder acceder a los metods de crear, consultar, eliminar, actualizar...
-let Person = new mongoose.model( 'Person', personSchema );
+let Person = mongoose.model( 'Person', personSchema );
 console.log(Person);
 
 const createAndSavePerson = (done) => {
@@ -35,10 +35,9 @@ const createAndSavePerson = (done) => {
   });
 
   person
-    .save( function(err, data) {
-      if(err) return console.error(err);
-      done(null, data);
-    });
+    .save()
+    .then( documento => console.log(documento) )
+    .catch( error => console.log(error) );
 
 };
 
