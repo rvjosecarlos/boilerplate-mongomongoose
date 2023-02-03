@@ -35,7 +35,9 @@ const createAndSavePerson = (done) => {
   });
 
   person
-    .save()
+    .save( (error, data)=>{
+      error ? done(error) : done(null, data);
+    })
     .then( res => console.log(res))
     .catch( error => console.log(error) );
 
