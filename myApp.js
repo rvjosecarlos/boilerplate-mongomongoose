@@ -97,15 +97,19 @@ const findPersonById = (personId, done) => {
 
 };
 
+// Actualiza realizando el proceso de Buscar-Editar-Guardar
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
 
+  // Buscar
   const promesaBuscar = Person.findById( personId );
 
   promesaBuscar
     .then( documento => {
       const { favoriteFoods } = documento;
+      // Actualiza
       favoriteFoods.push(foodToAdd);
+      // Guarda... Se puede guardar desde el mismo documento ya que tiene acceso al metodo .save()
       documento.save();
     })
     .catch( error => error );
