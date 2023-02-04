@@ -49,13 +49,7 @@ const createAndSavePerson = (done) => {
 const createManyPeople = (arrayOfPeople, done) => {
 
   // Se pueden ingresar varios datos de inicio a la coleccion con Modelo.Create( arrDeObjs, callback )
-  const promesaInsertar = Person.create( arrayOfPeople, (error, data)=>{
-    if( error ){
-      return done( error );
-    }else{
-      return done( null, data );
-    };
-  });
+  const promesaInsertar = Person.create( arrayOfPeople );
 
   promesaInsertar
     .then( resultado => console.log(resultado) )
