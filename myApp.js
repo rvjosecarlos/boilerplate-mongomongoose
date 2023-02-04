@@ -1,7 +1,7 @@
-//const { MONGO_URI } = require('dotenv').config().parsed;
+const { MONGO_URI } = require('dotenv').config().parsed;
 const mongoose = require('mongoose');
 
-const MONGO_URI = process.env['MONGO_URI'];
+//const MONGO_URI = process.env['MONGO_URI'];
 console.log(MONGO_URI);
 
 mongoose.connect( MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -57,6 +57,8 @@ const createManyPeople = (arrayOfPeople, done) => {
 
 };
 
+
+// Buscar o consultar por propiedad de un objeto .find traera todas las coincidencias y devolvera un arreglo
 const findPeopleByName = (personName, done) => {
 
   const objBuscado = {
@@ -70,8 +72,18 @@ const findPeopleByName = (personName, done) => {
     .catch( error => console.log(error) );
 };
 
+
+// Buscar o consultar por propiedad comida .findOne() traera solo la primera coincidencia
 const findOneByFood = (food, done) => {
-  done(null /*, data*/);
+  
+  const objBuscado = {
+    favoriteFoods: food
+  };
+
+  Person.find( objBuscado )
+    .then( documento => console.log(`Documento buscado ${documento}`) )
+    .catch( error => console.log(error) );
+
 };
 
 const findPersonById = (personId, done) => {
