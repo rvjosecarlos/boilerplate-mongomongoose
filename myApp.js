@@ -111,8 +111,6 @@ const findEditThenSave = (personId, done) => {
     .catch( error => error );
 };
 
-findEditThenSave('63ddb1903a262825accada4b');
-
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
 
