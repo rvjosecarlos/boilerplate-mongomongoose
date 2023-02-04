@@ -11,15 +11,15 @@ let personSchema = new mongoose.Schema( {
   name: {
     type: String,
     require: true,
-    lowercase: true
+    //lowercase: true
   },
   age: {
     type: Number,
-    require: true
+    //require: true
   },
   favoriteFoods: {
     type: [String],
-    require: true
+    //require: true
   }
 });
 
