@@ -80,14 +80,21 @@ const findOneByFood = (food, done) => {
     favoriteFoods: food
   };
 
-  Person.find( objBuscado )
+  Person.findOne( objBuscado )
     .then( documento => console.log(`Documento buscado ${documento}`) )
     .catch( error => console.log(error) );
 
 };
 
+// Buscar o consultar por el id del documento con .findById() traera solo la primera coincidencia
 const findPersonById = (personId, done) => {
-  done(null /*, data*/);
+
+  const promesaBuscar = Person.findById( personId );
+
+  promesaBuscar 
+    .then( documento => console.log(documento) )
+    .catch( error => console.log(error));
+
 };
 
 const findEditThenSave = (personId, done) => {
