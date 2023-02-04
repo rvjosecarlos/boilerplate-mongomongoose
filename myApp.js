@@ -131,8 +131,15 @@ const findAndUpdate = (personName, done) => {
   
 };
 
+// Elimina un documento de la coleccion de Persona
 const removeById = (personId, done) => {
-  done(null /*, data*/);
+
+  const promesaEliminar = Person.findByIdAndRemove( personId );
+
+  promesaEliminar
+    .then( respuesta => console.log(respuesta) )
+    .catch( error => console.log(error) );
+
 };
 
 const removeManyPeople = (done) => {
