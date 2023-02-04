@@ -115,10 +115,20 @@ const findEditThenSave = (personId, done) => {
     .catch( error => error );
 };
 
+// Actualiza el documento con .findOneAndUpdate( objBuscado, {propiedadActualizar}, { retornaElNuevoDoc })
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
 
-  done(null /*, data*/);
+  const objBuscado = {
+    name: personName
+  };
+
+  const promesaActualizar = Person.findOneAndUpdate( objBuscado, { age: ageToSet }, { new: true });
+
+  promesaActualizar
+    .then( documento => console.log(documento) )
+    .catch( error => error );                           
+  
 };
 
 const removeById = (personId, done) => {
