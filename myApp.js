@@ -58,7 +58,16 @@ const createManyPeople = (arrayOfPeople, done) => {
 };
 
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+
+  const objBuscado = {
+    name: personName
+  }
+
+  const promesaBuscar = Person.find( objBuscado );
+
+  promesaBuscar 
+    .then( documento => console.log(`Documento consultado ${documento}`) )
+    .catch( error => console.log(error) );
 };
 
 const findOneByFood = (food, done) => {
