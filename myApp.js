@@ -97,24 +97,21 @@ const findPersonById = (personId, done) => {
 
 };
 
-const findEditThenSave = async (personId, done) => {
+const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
 
-  try{
-      
-    const documento = await Person.findById( personId );
-    const { favoriteFoods } = documento;
+  const promesaBuscar = Person.findById( personId );
 
-    favoriteFoods.push( 'hamburguer' );
-
-    const docActualizado = await documento.save();
-
-    console.log(docActualizado);
-
-  }catch( error ){
-    console.log( error );
-  }
+  promesaBuscar
+    .then( documento => {
+      const { favoriteFoods } = documento;
+      favoriteFoods.push(foodToAdd);
+      documento.save();
+    })
+    .catch( error => error );
 };
+
+findEditThenSave('63ddb1903a262825accada4b');
 
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
