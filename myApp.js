@@ -31,7 +31,7 @@ const createAndSavePerson = (done) => {
 
   // Crea una instancia del modelo que basicamente es un objeto que accedera al metodo .save()
   const person = new Person({
-    name: 'Carlos',
+    name: 'Mary',
     age: 35,
     favoriteFoods: ['Pizza', 'Hamburguesas', 'Tacos']
   });
@@ -43,7 +43,6 @@ const createAndSavePerson = (done) => {
     .catch( error => console.log(error) );
 
 };
-
 
 // Agrega muchos documentos de tipo persona a la coleccion
 const createManyPeople = (arrayOfPeople, done) => {
@@ -142,11 +141,18 @@ const removeById = (personId, done) => {
 
 };
 
+// Elimina muchos documentos con Model.remove()
 const removeManyPeople = (done) => {
-  const nameToRemove = "Mary";
+  const nameToRemove = "Carlos";
 
-  done(null /*, data*/);
+  const promesaEliminar = Person.remove( { name:nameToRemove } );
+
+  promesaEliminar
+    .then( respuestaJSON => console.log(respuestaJSON) )
+    .catch( error => console.log(error) );
+
 };
+
 
 const queryChain = (done) => {
   const foodToSearch = "burrito";
