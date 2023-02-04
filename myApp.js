@@ -31,9 +31,9 @@ const createAndSavePerson = (done) => {
 
   // Crea una instancia del modelo que basicamente es un objeto que accedera al metodo .save()
   const person = new Person({
-    name: 'Mary',
+    name: 'Rosas',
     age: 35,
-    favoriteFoods: ['Pizza', 'Hamburguesas', 'Tacos']
+    favoriteFoods: ['Pizza', 'Hamburguesas', 'Tacos', 'chocolate']
   });
 
   // El objeto instanciado es el documento que sera agregado a la coleccion con el metodo .save()
@@ -155,9 +155,19 @@ const removeManyPeople = (done) => {
 
 
 const queryChain = (done) => {
-  const foodToSearch = "burrito";
+  //const foodToSearch = "burrito";
+  const foodToSearch = "chocolate";
 
-  done(null /*, data*/);
+  const promesaBuscar = Person.find() 
+                              .skip( 2 )
+                              .limit( 1 )
+                              .sort( { name: 1 } )
+                              .select( { favoriteFoods: foodToSearch, name: 1, age: 1 } );
+
+  promesaBuscar
+    .then( documentos => console.log(documentos) )
+    .catch( error => console.log(error) );
+
 };
 
 /** **Well Done !!**
