@@ -47,21 +47,9 @@ const createAndSavePerson = (done) => {
 
 // Agrega muchos documentos de tipo persona a la coleccion
 const createManyPeople = (arrayOfPeople, done) => {
-  
-  const nicole = {
-    name: 'Nicole',
-    age: 22,
-    favoriteFoods: ['Pollo en chiltipin', 'Molotes', 'Hamburguesas']
-  };
-
-  const carlos = {
-    name: 'Carlos',
-    age: 35,
-    favoriteFoods: ['Cereal con leche', 'Sopa maruchan', 'Tacos']
-  };
 
   // Se pueden ingresar varios datos de inicio a la coleccion con Modelo.Create( arrDeObjs, callback )
-  const promesaInsertar = Person.create( [ nicole, carlos ], (error, data)=>{
+  const promesaInsertar = Person.create( arrayOfPeople, (error, data)=>{
     if( error ){
       return done( error );
     }else{
