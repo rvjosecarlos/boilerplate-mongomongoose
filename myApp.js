@@ -97,10 +97,23 @@ const findPersonById = (personId, done) => {
 
 };
 
-const findEditThenSave = (personId, done) => {
+const findEditThenSave = async (personId, done) => {
   const foodToAdd = "hamburger";
 
-  done(null /*, data*/);
+  try{
+      
+    const documento = await Person.findById( personId );
+    const { favoriteFoods } = documento;
+
+    favoriteFoods.push( 'hamburguer' );
+
+    const docActualizado = await documento.save();
+
+    console.log(docActualizado);
+
+  }catch( error ){
+    console.log( error );
+  }
 };
 
 const findAndUpdate = (personName, done) => {
